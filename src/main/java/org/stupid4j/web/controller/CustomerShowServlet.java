@@ -1,7 +1,8 @@
 package org.stupid4j.web.controller;
 
-import javax.jws.WebService;
+
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -11,7 +12,7 @@ import java.io.IOException;
  * 展示客户
  * Created by yangsiqin on 2017/6/30.
  */
-@WebService("/customer_show")
+@WebServlet("/customer_show")
 public class CustomerShowServlet extends HttpServlet {
 
     /**
