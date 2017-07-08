@@ -3,6 +3,7 @@ package org.stupid4j.web.test;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+import org.stupid4j.web.helper.DataBaseHelper;
 import org.stupid4j.web.model.Customer;
 import org.stupid4j.web.service.CustomerService;
 
@@ -23,8 +24,9 @@ public class CustomerServiceTest {
     }
 
     @Before
-    public void init(){
-        //TODO 初始化数据库
+    public void init() throws Exception{
+        String file = "sql/customer_init.sql";
+        DataBaseHelper.executeSqlFile(file);
     }
 
     @Test
@@ -43,9 +45,9 @@ public class CustomerServiceTest {
     @Test
     public void createCustomerTest(){
         Map<String,Object> fieldMap = new HashMap<String,Object>();
-        fieldMap.put("name","");
-        fieldMap.put("contact","");
-        fieldMap.put("telephone","");
+        fieldMap.put("name","hahaqin");
+        fieldMap.put("contact","customer3");
+        fieldMap.put("telephone","18612345678");
         boolean result = customerService.createCustomer(fieldMap);
         Assert.assertTrue(result);
     }
@@ -54,7 +56,7 @@ public class CustomerServiceTest {
     public void updateCustomerTest(){
         Long id = 1L;
         Map<String,Object> fieldMap = new HashMap<String,Object>();
-        fieldMap.put("name","");
+        fieldMap.put("name","xiaoruan");
         boolean result = customerService.updateCustomer(id,fieldMap);
         Assert.assertTrue(result);
     }

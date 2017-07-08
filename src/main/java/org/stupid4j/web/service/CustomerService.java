@@ -1,7 +1,9 @@
 package org.stupid4j.web.service;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.stupid4j.web.helper.DataBaseHelper;
 import org.stupid4j.web.model.Customer;
-
 import java.util.List;
 import java.util.Map;
 
@@ -10,13 +12,15 @@ import java.util.Map;
  */
 public class CustomerService {
 
+    private static final Logger logger = LoggerFactory.getLogger(CustomerService.class);
+
     /**
      * 获取客户列表
      * @return
      */
     public List<Customer> getCustomerList(){
-        //TODO
-        return null;
+        String sql = "SELECT * FROM customer";
+        return DataBaseHelper.queryEntityList(Customer.class, sql);
     }
 
     /**
@@ -25,8 +29,8 @@ public class CustomerService {
      * @return
      */
     public Customer getCustomer(Long id){
-        //TODO
-        return null;
+       String sql = "SELECT * FROM customer WHERE id = ?";
+        return DataBaseHelper.queryEntity(Customer.class, sql, id);
     }
 
     /**
@@ -35,8 +39,7 @@ public class CustomerService {
      * @return
      */
     public boolean createCustomer(Map<String, Object> fieldMap){
-        //TODO
-        return false;
+        return DataBaseHelper.insertEntity(Customer.class, fieldMap);
     }
 
     /**
@@ -46,8 +49,7 @@ public class CustomerService {
      * @return
      */
     public boolean updateCustomer(Long id, Map<String,Object> fieldMap){
-        //TODO
-        return false;
+        return DataBaseHelper.updateEntity(Customer.class, id, fieldMap);
     }
 
     /**
@@ -56,8 +58,7 @@ public class CustomerService {
      * @return
      */
     public boolean deleteCustomer(Long id){
-        //TODO
-        return false;
+        return DataBaseHelper.deleteEntity(Customer.class, id);
     }
 
 }
